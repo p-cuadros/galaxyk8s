@@ -32,8 +32,9 @@ namespace Sol.Demo.ApiOpCliente
         public void ConfigureServices(IServiceCollection services)
         {
             
-            string cnn = Environment.GetEnvironmentVariable("ConnectionStrings_BDCliente");
-            if (string.IsNullOrEmpty(cnn))
+            //string cnn = Environment.GetEnvironmentVariable("ConnectionStrings_BDCliente");
+            string cadena = Configuration.GetValue<string>("ConnectionStrings:BDCliente");
+            /*if (string.IsNullOrEmpty(cnn))
             {
                 cnn = Configuration.GetValue<string>("ConnectionStrings:BDCliente");
                 Console.WriteLine($"Cadena de conexion desa {cnn}");
@@ -41,11 +42,11 @@ namespace Sol.Demo.ApiOpCliente
             else
             {
                 Console.WriteLine($"Cadena de conexion emv {cnn}");
-            }
+            }*/
 
             services.AddDbContext<ClienteContext>(options =>
             {
-                options.UseSqlServer(cnn);
+                options.UseSqlServer(cadena);
             });
 
             services.AddScoped<IClienteServices, ClienteServices>();
