@@ -18,7 +18,7 @@ spec:
         - name: IdentityServer__UrlServer
           value: "http://apiseguridad:8081"
         - name: "ConnectionStrings__BDCliente"
-          value: "Data Source=107.178.215.73;Initial Catalog=DBTaller;User Id=sqlserver;Password=A123456789123$"
+          value: "Data Source=34.70.113.93;Initial Catalog=DBTaller;User Id=sqlserver;Password=A123456789123$"
         image: patrickcuadros/apiopbanca
         imagePullPolicy: Always
         ports:
