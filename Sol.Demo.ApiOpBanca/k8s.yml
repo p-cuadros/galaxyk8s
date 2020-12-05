@@ -19,7 +19,7 @@ spec:
           value: "http://apiseguridad:8081"
         - name: "ConnectionStrings__BDCliente"
           value: "Data Source=107.178.215.73;Initial Catalog=DBTaller;User Id=sqlserver;Password=A123456789123$"
-        image: msalvadorp/apiopbanca
+        image: patrickcuadros/apiopbanca
         imagePullPolicy: Always
         ports:
         - containerPort: 8090

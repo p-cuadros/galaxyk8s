@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: apiseguridad
-        image: msalvadorp/apiseguridad
+        image: patrickcuadros/apiseguridad
         imagePullPolicy: Always
         ports:
         - containerPort: 8081

@@ -1,0 +1,64 @@
+version: '3.7'
+
+services:
+
+  apiseguridad:
+    image: apiseguridad
+    ports:
+      - 8081:8081
+    environment:
+      ASPNETCORE_URLS: "http://+:8081"
+  
+  apiopbanca:
+    image: apiopbanca
+    ports:
+      - 8090:8090
+      - 8091:8091
+    environment:
+      ASPNETCORE_URLS: "http://+:8090;https://+:8091"
+      IdentityServer__UrlServer: http://apiseguridad:8081
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: SECRETPASSWORD
+      ConnectionStrings__BDCliente: "Data Source=192.168.0.4;Initial Catalog=DBTaller;User Id=sa;Password=Tacna.2019"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+
+  apiuxbanca:
+    image: apiuxbanca
+    ports:
+      - 8001:80
+    environment:
+      # ASPNETCORE_URLS: "http://+:8095;https://+:8096"
+      IdentityServer__UrlServer: http://apiseguridad:8081
+      # ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      # ASPNETCORE_Kestrel__Certificates__Default__Password: SECRETPASSWORD
+      UrlApiCliente: "https://apiopbanca:8091/"
+    # volumes:
+    #   - ~/.aspnet/https:/https:ro
+
+  apiopcliente:
+    image: apiopcliente
+    ports:
+      - 8095:8095
+      - 8096:8096
+    environment:
+      ASPNETCORE_URLS: "http://+:8095;https://+:8096"
+      IdentityServer__UrlServer: http://apiseguridad:8081
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: SECRETPASSWORD
+      ConnectionStrings__BDCliente: "Data Source=192.168.0.4;Initial Catalog=DBTaller;User Id=sa;Password=Tacna.2019"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+ 
+  apiuxcustomer:
+    image: apiuxcustomer
+    ports:
+      - 8002:80
+    environment:
+      # ASPNETCORE_URLS: "http://+:8095;https://+:8096"
+      IdentityServer__UrlServer: http://apiseguridad:8081
+      # ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      # ASPNETCORE_Kestrel__Certificates__Default__Password: SECRETPASSWORD
+      UrlApiCliente: "https://apiopcliente:8096/"
+    # volumes:
+    #   - ~/.aspnet/https:/https:ro

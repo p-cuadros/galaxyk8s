@@ -19,7 +19,7 @@ spec:
           value: "http://apiseguridad:8081"
         - name: "UrlApiCliente"
           value: "https://apiopbanca:8091/"
-        image: msalvadorp/apiuxbanca
+        image: patrickcuadros/apiuxbanca
         imagePullPolicy: Always
         ports:
         - containerPort: 80

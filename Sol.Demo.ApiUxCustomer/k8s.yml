@@ -18,8 +18,8 @@ spec:
         - name: IdentityServer__UrlServer
           value: "http://apiseguridad:8081"
         - name: "UrlApiCliente"
-          value: "https://apiopcliente:8091/"
-        image: msalvadorp/apiuxcustomer
+          value: "https://apiopcliente:8096/"
+        image: patrickcuadros/apiuxcustomer
         imagePullPolicy: Always
         ports:
         - containerPort: 80

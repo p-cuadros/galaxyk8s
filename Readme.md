@@ -13,8 +13,9 @@ dotnet ef database update
 -- INSERT Cuenta VALUES (5,5000)
 
 
-dotnet add package Grpc.core
-dotnet add package grpc.aspnetcore
+> dotnet add package Grpc.core
+> dotnet add package grpc.aspnetcore
+> dotnet add package grpc.net.client
 
 C:\Users\pcuadros_dev\.nuget\packages\grpc.tools\2.34.0\tools\windows_x64\protoc.exe --proto_path=Protos --grpc_out=Protos --csharp_out=Protos --csharp_opt=file_extension=.g.cs Banca.proto --plugin=protoc-gen-grpc=C:\Users\pcuadros_dev\.nuget\packages\grpc.tools\2.34.0\tools\windows_x64\grpc_csharp_plugin.exe
 
@@ -30,15 +31,19 @@ C:\Users\pcuadros_dev\.nuget\packages\grpc.tools\2.34.0\tools\windows_x64\protoc
 > docker build -t apiopcliente ./../ -f Dockerfile
 #### Le ponemos un tag con el usuario del Hub.docker
 
-> docker tag apiuxbanca msalvadorp/apiuxbanca
-> docker tag apiseguridad msalvadorp/apiseguridad
-> docker tag apiopbanca msalvadorp/apiopbanca
+> docker tag apiseguridad patrickcuadros/apiseguridad
+> docker tag apiopbanca patrickcuadros/apiopbanca
+> docker tag apiuxbanca patrickcuadros/apiuxbanca
+> docker tag apiopcliente patrickcuadros/apiopcliente
+> docker tag apiuxcustomer patrickcuadros/apiuxcustomer
 
 #### Subimos la imagen hacia el repositorio de imagenes (hubDocker)
 
-> docker push msalvadorp/apiuxbanca
-> docker push msalvadorp/apiseguridad
-> docker push msalvadorp/apiopbanca
+> docker push patrickcuadros/apiseguridad
+> docker push patrickcuadros/apiopbanca
+> docker push patrickcuadros/apiuxbanca
+> docker push patrickcuadros/apiopcliente
+> docker push patrickcuadros/apiuxcustomer
 
 # Configurando Istio
 
