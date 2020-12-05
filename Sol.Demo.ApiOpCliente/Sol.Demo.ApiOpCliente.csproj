@@ -11,6 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc" Version="2.34.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.33.1" />
+    <PackageReference Include="Grpc.Core" Version="2.34.0" />
+    <PackageReference Include="Grpc.tools" Version="2.34.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
@@ -22,10 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\AccuntService.proto" GrpcServices="Server" ProtoRoot="Protos\" />
-    <Protobuf Include="Protos\CustomerService.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\Banca.proto" GrpcServices="Server" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <None Update="k8s.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

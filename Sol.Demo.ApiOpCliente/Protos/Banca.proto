@@ -3,13 +3,13 @@ syntax = "proto3";
 option csharp_namespace = "Sol.Demo.Banca.Protos";
 
 service BancaServiceGrpc{
-    rpc ConsultarSaldoCta ( txRequest ) returns ( txResponse );  
+    rpc ConsultarSaldoCta ( CuentaRequest ) returns ( CuentaResponse );  
 }
 
-message txRequest{
+message CuentaRequest{
 	int32 idCuenta = 1;
 }
 
-message txResponse{
+message CuentaResponse{
     double saldo = 10;
 }

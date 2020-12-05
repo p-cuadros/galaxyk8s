@@ -8,7 +8,7 @@ using Sol.Demo.Comunes.BE;
 namespace Sol.Demo.ApiOpCliente.ServicesGrpc
 {
     [Authorize]
-    public class BancaServerGrpc
+    public class BancaServerGrpc : BancaServiceGrpc.BancaServiceGrpcBase
     {
         private readonly ICuentaServices cuentaServices;
         private readonly ILogger<BancaServerGrpc> logger;
@@ -20,8 +20,8 @@ namespace Sol.Demo.ApiOpCliente.ServicesGrpc
             this.logger = _logger;
         }
 
-        public override async Task<txResponse> ConsultarSaldoCta
-            (int _idCuenta, ServerCallContext _context)
+        public override async Task<CuentaResponse> ConsultarSaldoCta
+            (CuentaRequest request, ServerCallContext _context)
         {
             logger.LogWarning("Llego a opbanca grpc");
 
@@ -29,10 +29,10 @@ namespace Sol.Demo.ApiOpCliente.ServicesGrpc
             // {
             //     IdCuentaDestino = request.IdCuentaDestino,
             // };
-            SaldoCuentaResponseBE resp = await cuentaServices.RecuperarSaldoIdCuenta(_idCuenta)
-            txResponse txRpta = new txResponse()
+            SaldoCuentaResponseBE resp = await cuentaServices.RecuperarSaldoIdCuenta(request.IdCuenta);
+            CuentaResponse txRpta = new CuentaResponse()
             {
-                IdOperacion = resp.Amount
+                Saldo = (double)resp.Amount
             };
             return txRpta;
         }

@@ -11,3 +11,7 @@ dotnet ef database update
 -- INSERT Cuenta VALUES (1,3000)
 -- INSERT Cuenta VALUES (1,4000)
 -- INSERT Cuenta VALUES (5,5000)
+
+
+
+C:\Users\pcuadros_dev\.nuget\packages\grpc.tools\2.34.0\tools\windows_x64\protoc.exe --proto_path=Protos --grpc_out=Protos --csharp_out=Protos --csharp_opt=file_extension=.g.cs Banca.proto --plugin=protoc-gen-grpc=C:\Users\pcuadros_dev\.nuget\packages\grpc.tools\2.34.0\tools\windows_x64\grpc_csharp_plugin.exe
