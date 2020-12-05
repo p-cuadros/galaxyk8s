@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="grpc.aspnetcore" Version="2.33.1" />
+    <PackageReference Include="Grpc.core" Version="2.34.0" />
+    <PackageReference Include="grpc.net.client" Version="2.33.1" />
+    <PackageReference Include="IdentityModel" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
@@ -14,11 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\Sol.Demo.ApiOpCliente\Protos\AccuntService.proto" GrpcServices="Client">
-      <Link>Protos\AccuntService.proto</Link>
-    </Protobuf>
-    <Protobuf Include="..\Sol.Demo.ApiOpCliente\Protos\CustomerService.proto" GrpcServices="Client">
-      <Link>Protos\CustomerService.proto</Link>
+    <Protobuf Include="..\Sol.Demo.ApiOpCliente\Protos\Banca.proto" GrpcServices="Client">
+      <Link>Protos\Banca.proto</Link>
     </Protobuf>
   </ItemGroup>
 
