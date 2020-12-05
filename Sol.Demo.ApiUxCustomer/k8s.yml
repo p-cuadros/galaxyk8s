@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiuxcustomer
+spec:
+  selector:
+    matchLabels:
+      app: apiuxcustomer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: apiuxcustomer
+    spec:
+      containers:
+      - name: apiuxcustomer
+        env:
+        - name: IdentityServer__UrlServer
+          value: "http://apiseguridad:8081"
+        - name: "UrlApiCliente"
+          value: "https://apiopcliente:8091/"
+        image: msalvadorp/apiuxcustomer
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiuxcustomer
+  labels:
+    app: apiuxcustomer
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+      name: http-trafic
+  selector:
+    app: apiuxcustomer
+  type: LoadBalancer

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiopcliente
+spec:
+  selector:
+    matchLabels:
+      app: apiopcliente
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apiopcliente
+    spec:
+      containers:
+      - name: apiopcliente
+        env:
+        - name: IdentityServer__UrlServer
+          value: "http://apiseguridad:8081"
+        - name: "ConnectionStrings__BDCliente"
+          value: "Data Source=107.178.215.73;Initial Catalog=DBTaller;User Id=sqlserver;Password=A123456789123$"
+        image: msalvadorp/apiopcliente
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8095
+        - containerPort: 8096
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiopcliente
+  labels:
+    app: apiopcliente
+spec:
+  ports:
+    - port: 8095
+      protocol: TCP
+      targetPort: 8095
+      name: http-trafic
+    - port: 8096
+      protocol: TCP
+      targetPort: 8096
+      name: https-trafic
+  selector:
+    app: apiopcliente
+  type: LoadBalancer

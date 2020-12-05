@@ -1,9 +1,12 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
-#FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as base
+#FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as base
 WORKDIR /app
-EXPOSE 80
+ENV ASPNETCORE_URLS="http://+:8095;https://+:8096"
+ENV IdentityServer__UrlServer="DEMO"
+EXPOSE 8095
+EXPOSE 8096
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
